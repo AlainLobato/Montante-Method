@@ -130,8 +130,15 @@ function saveIndex() {
 }
 
 // Función para obtener el número de ecuaciones
-function getN() {
-    let n = document.getElementById('n').value;
+function getN(num) {
+    let n;
+
+    if (num == undefined) {
+        n = document.getElementById('n').value;
+    }else{
+        n = num;
+    }
+
     n = parseInt(n);
     return n;
 }
@@ -340,8 +347,14 @@ function solve() {
 }
 
 // Función para verificar la diagonal principal de la matriz
-function checkDiag() {
-    let n = getN();
+function checkDiag(num) {
+    let n;
+
+    if (num == undefined) {
+        n = getN();
+    }else{
+        n = num;
+    }
 
     for (let i = 0; i < n; i++) {
         let chk = 0;
@@ -385,7 +398,7 @@ function checkDiag() {
     for (let i = 0; i < n; i++) {
         let chk = 0;
         if (mat[i][i] == 0 && chk < n) {
-            checkDiag()
+            checkDiag(n)
             chk += 1;
             console.log(chk)
         }
