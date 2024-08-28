@@ -181,6 +181,12 @@ function solve() {
     solution.innerHTML = ''; // Limpiar el contenedor de la solución
     answers.innerHTML = ''; // Limpiar el contenedor de las respuestas
 
+    if (mat == 0) {
+        alert('Debes mostrar la matriz antes de calcular');
+        return;
+        
+    }
+
     // Verificación de la diagonal principal
     let isDiagonalValid = checkDiag();
     
@@ -320,6 +326,7 @@ function solve() {
     answers.appendChild(div3);
 
     console.log(matAct); // Mostrar la matriz final en consola
+    mat = [];
 }
 
 // Función para verificar la diagonal principal de la matriz
