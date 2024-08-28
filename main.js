@@ -159,11 +159,14 @@ function seeMatrix(resp) {
     btnSolve.type = 'submit';
     btnSolve.textContent = 'Calcular';
     btnSolve.onclick = solve;
+
+    let mtx = document.createElement('h3');
+    mtx.textContent = 'Matriz: ';
     seeMat.appendChild(math);
 
     if (res !== undefined) {
         let h3 = document.createElement('h3');
-        h3.textContent = 'Soluciones:';
+        h3.textContent = 'Matriz de coeficientes independientes: ';
         seeMat.appendChild(h3);
         seeMat.appendChild(res);
     }
@@ -245,12 +248,16 @@ function solve() {
         mat = [...matAct];
 
         // Mostrar la matriz después de cada paso
+        let paso = document.createElement('h2');
+        paso.textContent = `Paso ${numPiv + 1}:`;
+        solution.appendChild(paso);
         let math = printMat(matAct);
         let h3 = document.createElement('h3');
         h3.textContent = `Piv. Ant: ${pivAnt}, Piv. Act: ${pivAct}`;
         math.appendChild(h3);
         solution.appendChild(document.createElement('br'));
         solution.appendChild(math);
+        solution.appendChild(document.createElement('br'));
         matAct = [];
         pivAnt = pivAct;
         numPiv++;
@@ -264,6 +271,7 @@ function solve() {
         let h4 = document.createElement('h4');
         h4.style.color = '#e0e0e0';
         h4.textContent = `No se puede resolver por este método`;
+        solution.innerHTML = '';
         solution.appendChild(h4);
         console.error('No se puede resolver por este método');
         return;
@@ -312,12 +320,14 @@ function solve() {
     div1.appendChild(seeAdj);
     div1.appendChild(matAd);
     answers.appendChild(div1);
+    answers.appendChild(document.createElement('br'));
     let det = mat[0][0];
     let seeDet = document.createElement('h3');
     seeDet.textContent = `El determinante es ${det}`;
     let div2 = document.createElement('div');
     div2.appendChild(seeDet);
     answers.appendChild(div2);
+    answers.appendChild(document.createElement('br'));
     let seeInv = document.createElement('h3');
     seeInv.textContent = 'La matriz inversa es: ';
     let div3 = document.createElement('div');
