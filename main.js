@@ -2,7 +2,6 @@
 let mat = [];
 let matAct = [];
 let resp = [];
-let itFunction = 0;
 let matAdj = [];
 let matInv = [];
 
@@ -274,15 +273,17 @@ function solve() {
         }
     }
 
-    if (mat[n-1][n-1] == 0) {
-        let h4 = document.createElement('h4');
-        h4.style.color = '#e0e0e0';
-        h4.textContent = `No se puede resolver por este método`;
-        solution.innerHTML = '';
-        solution.appendChild(h4);
-        console.error('No se puede resolver por este método');
-        return;
-        
+    for (let i = 0; i < n; i++) {
+        if (mat[i][i] == 0 || isNaN(mat[i][i])) { 
+            let h4 = document.createElement('h4');
+            h4.style.color = '#e0e0e0';
+            h4.textContent = `No se puede resolver por este método`;
+            solution.innerHTML = '';
+            solution.appendChild(h4);
+            console.error('No se puede resolver por este método');
+            return;
+            
+        }
     }
 
     // Mostrar las soluciones
@@ -394,6 +395,8 @@ function checkDiag(num) {
         }
 
     }
+
+
 
     for (let i = 0; i < n; i++) {
         let chk = 0;
